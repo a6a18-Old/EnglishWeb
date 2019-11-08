@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import random
-
+import cgitb
+cgitb.enable()
 
 def cloze(word):
 
