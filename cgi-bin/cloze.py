@@ -29,18 +29,28 @@ def cloze(word):
 
     html = requests.get(url, headers=header)
     soup = BeautifulSoup(html.text, 'html.parser')
-    word_sentence_list = soup.select('p span.fz-14.fw-500')
-    word_past_list = soup.select('h4 span.fz-14 b')
-    word_past_list = [past_word.text for past_word in word_past_list]
+    word_sentence_list = soup.select('p span.fz-14.fw-500')  # 抓單字的例句。此為一個list所以後來得取索引。
+    word_past_list = soup.select('li.ov-a.fstlst.mt-0 h4 span.fz-14 b')  # 如果此單字有特殊變化，do did done而不是一般的ed 那麼他就會抓到，反之抓不到。這樣可以有 ___ed的效果。
 
-    try:
+
+    try:   # 為了避免輸入者輸入不存在的單字而導致的錯誤，事實上在上面就會出錯，但是刻意將error擺在取句子比較精準！ 除非此單字本來就沒有例句，這時就尷尬了。
         sentence = random.sample(word_sentence_list, 1)  # 後面的1表示取一個句子，可取多個唷，依照個人需求。 #取出為清單 需要再調整。
     except ValueError:
-        return print("無此單字例句")
+        return print("無此單字的例句")
 
 
     # sentence.text   # It takes a lot of work to dig a deep well. 挖一口深井很費事。
-    question = sentence[0].text.replace(str(word), '____')   # __ed。
+    question = sentence[0].text
+
+
+    word_past_list = [past_word.text for past_word in word_past_list]
+    word_past_list.append(word)
+    print(word_past_list)
+
+
+    for keyword in word_past_list:
+        if keyword in question:
+            question = question.replace(keyword, '____')
     #print(question)
     return question
 
@@ -49,5 +59,5 @@ def cloze(word):
 
 if __name__ == '__main__':
 
-    past("do")
-    #print(cloze('work'))
+    #past("do")
+    print(cloze('poke'))
