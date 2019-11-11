@@ -45,7 +45,7 @@ def cloze(word):
 
     word_past_list = [past_word.text for past_word in word_past_list]
     word_past_list.append(word)
-    print(word_past_list)
+    #print(word_past_list)
 
 
     for keyword in word_past_list:

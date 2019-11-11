@@ -18,7 +18,10 @@ print("<head>")
 print("<title>Hello - Second CGI Program</title>")
 print("</head>")
 print("<body>")
-args = cgi.FieldStorage()
-print('\n\n' + cloze.cloze(args.getvalue('word')))
+try:  # 這一段單純為了不要讓網頁的error被使用者看到而添加的
+    args = cgi.FieldStorage()
+    print('\n\n' + cloze.cloze(args.getvalue('word')))
+except:
+    pass
 print("</body>")
 print("</html>")
