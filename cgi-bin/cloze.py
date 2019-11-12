@@ -44,8 +44,9 @@ def cloze(word):
 
 
     word_past_list = [past_word.text for past_word in word_past_list]
-    word_past_list.append(word)
-    #print(word_past_list)
+    word_past_list.append(word)  # 添加原先的單字
+    word_past_list.append(word.capitalize())  # 添加大寫過濾 (字首 or 專有名詞)
+    print(word_past_list)
 
 
     for keyword in word_past_list:
@@ -60,4 +61,4 @@ def cloze(word):
 if __name__ == '__main__':
 
     #past("do")
-    print(cloze('poke'))
+    print(cloze('do'))
