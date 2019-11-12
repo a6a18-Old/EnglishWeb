@@ -20,7 +20,7 @@ print("</head>")
 print("<body>")
 try:  # 這一段單純為了不要讓網頁的error被使用者看到而添加的
     args = cgi.FieldStorage()
-    print('\n\n' + cloze.cloze(str(args.getvalue('word'))).lower())
+    print('\n\n' + cloze.cloze(args.getvalue('word')))
 except:
     pass
 print("</body>")

@@ -21,7 +21,7 @@ def past(word):
 
 
 def cloze(word):
-
+    word = word.lower()   # 避免輸入的單字有大小寫不同而無法過濾，一律都先轉小寫
     url = 'https://tw.dictionary.search.yahoo.com/search;_ylt=AwrtXG4A1MBddHcAXxx7rolQ;_ylc=X1MDMTM1MTIwMDM3OQRfcgMyBGZyAwRncHJpZANic25FZFpQSlFJS3JJMWRnSFNvMFhBBG5fcnNsdAMwBG5fc3VnZwM0BG9yaWdpbgN0dy5kaWN0aW9uYXJ5LnNlYXJjaC55YWhvby5jb20EcG9zAzAEcHFzdHIDBHBxc3RybAMwBHFzdHJsAzIEcXVlcnkDZG8EdF9zdG1wAzE1NzI5MTgyNzg-?p='+str(word)+'&fr=sfp&iscqry=&guccounter=1'
     header = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
@@ -46,7 +46,7 @@ def cloze(word):
     word_past_list = [past_word.text for past_word in word_past_list]
     word_past_list.append(word)  # 添加原先的單字
     word_past_list.append(word.capitalize())  # 添加大寫過濾 (字首 or 專有名詞)
-    print(word_past_list)
+    #print(word_past_list)
 
 
     for keyword in word_past_list:
